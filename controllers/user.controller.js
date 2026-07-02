@@ -18,8 +18,8 @@ const register = async (req, res) => {
 
         // Crear el nuevo usuario
         const newUser = new User({
-            name,
-            email,
+            name: name || 'Anonymous',
+            email: email || 'no-email@example.com',
             password: hashedPassword,
             role: role || 'user'
         });

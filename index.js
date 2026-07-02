@@ -5,6 +5,14 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/user.routes');
 
 dotenv.config();
+// Asegura que `globalThis.crypto` exista (soluciona errores en algunos entornos)
+if (typeof globalThis.crypto === 'undefined') {
+	try {
+		globalThis.crypto = require('crypto');
+	} catch (err) {
+		console.warn('No se pudo establecer globalThis.crypto:', err);
+	}
+}
 connectDB();
 
 const app = express();
